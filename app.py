@@ -58,11 +58,15 @@ async def feedback_endpoint(question: str = Form(...), answer: str = Form(...), 
     save_feedback({"question": question, "answer": answer, "feedback": feedback})
     return JSONResponse({"status": "success"})
 
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
+
 # if __name__ == "__main__":
 #     uvicorn.run(app, port=8000)
     
-if __name__ == "__main__":
-    BASE_DIR = Path(__file__).parent
-else:
-    # For Vercel deployment
-    BASE_DIR = Path(os.getcwd())
+# if __name__ == "__main__":
+#     BASE_DIR = Path(__file__).parent
+# else:
+#     # For Vercel deployment
+#     BASE_DIR = Path(os.getcwd())
