@@ -62,7 +62,7 @@ def perform_web_search(query):
 # knowledge base
 class rag:
     def __init__(self):
-        self.model = SentenceTransformer('all-MiniLM-L6-v2')  #paraphrase-albert-small-v2
+        self.model = SentenceTransformer("paraphrase-MiniLM-L3-v2", device="cpu", backend="onnx", model_kwargs={"torch_dtype": "float16"})  #paraphrase-albert-small-v2   #all-MiniLM-L6-v2
         response = requests.get(FIREBASE_KB_URL)
         if response.status_code == 200:
             self.MATH_KB = response.json()
